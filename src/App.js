@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/navbar/Navbar';
+// Import your page components below
+import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
+import Products from './components/products/Products';
+import AddProduct from './components/addProduct/AddProduct';
+// ... import other pages as needed
 
-function App() {
+const AppRouter = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/" element={<Navigate to="/products" />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
-}
+};
 
-export default App;
+export default AppRouter;
